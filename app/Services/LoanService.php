@@ -64,11 +64,11 @@ class LoanService {
             $bookDetail = $this->bookDetail($data['loan_detail']['book_id']);
             $getData = $this->getData($id);
             $loanDetailById = $this->detailLoan->getLoanDetailById($id);
-            if(!$bookDetail->stock < 1 && $bookDetail->id === $data['loan_detail']['book_id']) {
+            if(!$bookDetail->stock < 1 ?? $bookDetail->id === $data['loan_detail']['book_id']) {
+                $this->incrementStock($loanDetailById['book_id'], $loanDetailById['total']);
                 $loan = $this->loan->update($id, $data);
-                $this->incrementStock($data['loan_detail']['book_id'], $loanDetailById['total']);
                 $loanDetail = $this->updateDetailLoan($getData['loandetail']['id'], $data['loan_detail']);
-                $this->decrementStock($data['loan_detail']['book_id'], $data['loan_detail']['total']);
+                $this->decrementStock($loanDetail['book_id'], $loanDetail['total']);
                 Db::commit();
                 return $data = [
                     'loan' => $loan,

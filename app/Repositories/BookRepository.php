@@ -52,8 +52,7 @@ class BookRepository implements BookInterface {
 
     public function bookDetail($id)
     {
-        $book = $this->book::findOrFail($id)
-            ->where('id', '=', $id)
+        $book = $this->book::where('id', '=', $id)
             ->select('stock', 'id')
             ->first();
         return $book;
