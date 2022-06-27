@@ -12,7 +12,7 @@
 Clone the project
 
 ```bash
-  https://github.com/rhandyta/api-perpustakaan.git
+  git clone https://github.com/rhandyta/api-perpustakaan.git
 ```
 
 Go to the project directory
