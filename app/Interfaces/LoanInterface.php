@@ -10,4 +10,5 @@ interface LoanInterface {
     public function destroy($data);
     public function getBorrowDate($id);
     public function getData($id);
+    public function returnBook($data);
 }

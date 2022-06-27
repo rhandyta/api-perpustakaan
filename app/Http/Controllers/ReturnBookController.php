@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\ReturnBook;
 use App\Http\Requests\StoreReturnBookRequest;
 use App\Http\Requests\UpdateReturnBookRequest;
+use App\Services\ReturnService;
+use Illuminate\Http\Request;
+use Throwable;
 
 class ReturnBookController extends Controller
 {
+
+    protected $returnBook;
+
+    public function __construct(ReturnService $returnBook)
+    {
+        $this->returnBook = $returnBook;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,18 @@ class ReturnBookController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $returnBook = $this->returnBook->index();
+            return response()->json([
+                'success' => true,
+                'data' => $returnBook
+            ]);
+        } catch (Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -26,7 +47,18 @@ class ReturnBookController extends Controller
      */
     public function store(StoreReturnBookRequest $request)
     {
-        //
+        try {
+            $returnBook = $this->returnBook->store($request->all());
+            return response()->json([
+                'success' => true,
+                'data' => $returnBook
+            ]);
+        } catch (Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -35,9 +67,20 @@ class ReturnBookController extends Controller
      * @param  \App\Models\ReturnBook  $returnBook
      * @return \Illuminate\Http\Response
      */
-    public function show(ReturnBook $returnBook)
+    public function show($id)
     {
-        //
+        try {
+            $returnBook = $this->returnBook->show($id);
+            return response()->json([
+                'success' => true,
+                'data' => $returnBook,
+            ]);
+        } catch (Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -47,10 +90,6 @@ class ReturnBookController extends Controller
      * @param  \App\Models\ReturnBook  $returnBook
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReturnBookRequest $request, ReturnBook $returnBook)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -58,8 +97,19 @@ class ReturnBookController extends Controller
      * @param  \App\Models\ReturnBook  $returnBook
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReturnBook $returnBook)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $returnBook = $this->returnBook->destroy($request->all());
+            return response()->json([
+                'success' => true,
+                'data' => $returnBook
+            ]);
+        } catch (Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 }

@@ -27,7 +27,8 @@ class StoreReturnBookRequest extends FormRequest
     {
         return [
             'loan_id' => 'required',
-            'date_return' => 'required|date',
+            'date_return' => 'required|date|after:yesterday|before:tomorrow',
+            'status' => 'required',
         ];
     }
 
@@ -44,7 +45,10 @@ class StoreReturnBookRequest extends FormRequest
         return [
           'loan_id.required' => 'Loan is required',
           'date_return.required' => 'Date return is required',
-          'date_return.date' => 'date doesnt match today'
+          'date_return.after' => 'Make sure today',
+          'date_return.before' => 'Make sure today',
+          'date_return.date' => 'Date doesnt match today',
+          'status' => 'Loan status is required'
         ];
     }
 }

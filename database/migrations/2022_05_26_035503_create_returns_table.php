@@ -17,7 +17,7 @@ class CreateReturnsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('loan_id')->constrained();
             $table->unsignedBigInteger('user_id')->constrained();
-            $table->date('date_return');
+            $table->timestamp('date_return');
             $table->timestamps();
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

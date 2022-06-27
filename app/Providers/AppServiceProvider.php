@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('App\Interfaces\BookInterface', 'App\Repositories\BookRepository');
         $this->app->singleton('App\Interfaces\LoanInterface', 'App\Repositories\LoanRepository');
         $this->app->singleton('App\Interfaces\DetailLoanInterface', 'App\Repositories\DetailLoanRepository');
+        $this->app->singleton('App\Interfaces\ReturnInterface', 'App\Repositories\ReturnRepository');
     }
 
     /**
@@ -29,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
+        date_default_timezone_set('Asia/Jakarta');
     }
 }

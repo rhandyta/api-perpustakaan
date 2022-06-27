@@ -148,4 +148,10 @@ class LoanService {
         return $getBorrowDate;
     }
 
+    public function returnBook($data)
+    {
+        $returnBook = $this->loan->returnBook($data);
+        return $returnBook;
+    }
+
 }

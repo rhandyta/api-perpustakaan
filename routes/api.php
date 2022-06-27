@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\ReturnBookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,4 +58,7 @@ Route::group([
 
     Route::apiResource('loan', LoanController::class, ['except' => 'destroy']);
     Route::delete('loan', [LoanController::class, 'destroy'])->name('loan.destroy');
+
+    Route::apiResource('return', ReturnBookController::class, ['except' => 'destroy']);
+    Route::delete('return', [ReturnBookController::class, 'destroy'])->name('return.destroy');
 });

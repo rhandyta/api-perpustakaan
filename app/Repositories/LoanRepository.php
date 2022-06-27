@@ -71,4 +71,12 @@ class LoanRepository implements LoanInterface {
         $data = $this->loan::with('loandetail')->findOrFail($id)->toArray();
         return $data;
     }
+
+    public function returnBook($data)
+    {
+        $returnBook = $this->loan::findOrFail($data['loan_id']);
+        $returnBook->fill($data);
+        $returnBook->save();
+        return $returnBook;
+    }
 }

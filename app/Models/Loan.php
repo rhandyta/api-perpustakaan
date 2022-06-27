@@ -19,11 +19,16 @@ class Loan extends Model
 
     public function LoanDetail()
     {
-        return $this->hasOne(DetailLoan::class);
+        return $this->hasMany(DetailLoan::class);
     }
 
     public function User()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function ReturnBook()
+    {
+        return $this->hasOne(ReturnBook::class);
     }
 }

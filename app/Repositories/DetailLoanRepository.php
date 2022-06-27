@@ -34,4 +34,13 @@ class DetailLoanRepository implements DetailLoanInterface {
         return $loanDetail;
     }
 
+    public function returnBook($data)
+    {
+        $loanDetail = $this->loanDetail::query()
+        ->where('loan_id', '=', $data['loan_id'])
+        ->select('loan_id', 'book_id', 'total')
+        ->first();
+        return $loanDetail;
+    }
+
 }
