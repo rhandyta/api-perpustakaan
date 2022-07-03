@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 class PublisherFactory extends Factory
 {
     /**
@@ -17,7 +17,7 @@ class PublisherFactory extends Factory
         return [
             'publisher_code' => $this->faker->randomNumber(4),
             'publisher_name' => $publisher,
-            'slug' => \Str::slug($publisher)
+            'slug' => Str::slug($publisher)
         ];
     }
 }
